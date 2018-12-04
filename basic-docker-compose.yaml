@@ -1,0 +1,41 @@
+version: "3.6"
+
+services:
+  consul:
+    image: consul:latest
+    command: consul agent -bind=0.0.0.0 -data-dir=/consul/data -node=node0 -bootstrap-expect=1  -client=0.0.0.0 -server 
+    ports:
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:8600"
+      - "8600:8600/udp"
+    volumes:
+      - consul-data-volume:/consul/data
+    restart: always
+
+  redis:
+    image: redis:latest
+    hostname: redis
+    restart: always
+    volumes:
+      - redis-data-volume:/data
+
+  mysql:
+    image: mysql:latest
+    hostname: mysql
+    restart: always
+    volumes:
+      - mysql-data-volume:/data
+
+volumes:
+  consul-data-volume:
+    external: true
+  redis-data-volume:
+    external: true
+  mysql-data-volume:
+    external: true
+
+networks:
+  default:
+    external:
+      name: backend

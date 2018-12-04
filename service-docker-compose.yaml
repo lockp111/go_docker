@@ -1,0 +1,41 @@
+version: "3.6"
+
+# service list
+services:
+
+  app:
+    image: go-alpine
+    container_name: app
+    environment: 
+      - MICRO_REGISTRY_ADDRESS=consul:8500
+    stdin_open: true
+    command: ./app
+    volumes:
+      - app-data-volume:/mnt/work
+    ports:
+      - "8000:8000"
+    restart: always
+    
+  backend:
+    image: go-alpine
+    container_name: backend
+    environment: 
+      - MICRO_REGISTRY_ADDRESS=consul:8500
+    stdin_open: true
+    command: ./backend
+    volumes:
+      - backend-data-volume:/mnt/work
+    ports:
+      - "8001:8001"
+    restart: always
+
+volumes:
+  app-data-volume:
+    external: true
+  backend-data-volume:
+    external: true
+
+networks:
+  default:
+    external:
+      name: backend
