@@ -1,14 +1,24 @@
-# go_docker
-go_docker image
+# Go Docker
+go docker project demo
 
-## Build
+## Usage:
+
+### Basic Build
 ```shell
-$ make image
-$ make build project=go_docker
+$ make basic-build project=<project name>
 ```
 
-## Setup
+### Basic Up
 ```shell
-$ make basic   // setup basic service
-$ make service // setup service
+$ make basic-up   // start basic services
+```
+
+### Service Build
+```shell
+$ make service-build project=<project name>
+```
+
+### Service Up
+```shell
+$ make service-up // start services
 ```

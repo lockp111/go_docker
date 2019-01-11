@@ -7,7 +7,7 @@ build() {
     # init dir
     for SRV in ${SERVICES[@]}
     do
-        mkdir -p /mnt/$PROJECT/$SRV
+        sudo mkdir -p /mnt/$PROJECT/$SRV
     done
 
     # init data-volume

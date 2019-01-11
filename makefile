@@ -3,17 +3,19 @@ DC = docker-compose
 
 project ?=
 
+basic-build:
+	sh ./basic_build.sh $(project)
+	
 image:
 	$(DK) build -t go-alpine ./go-alpine
 
-build:
-	sh ./basic_build.sh $(project)
+service-build: image
 	sh ./service_build.sh $(project)
 
-basic:
+basic-up:
 	$(DC) -f basic-docker-compose.yaml up -d
 	$(DC) -f basic-docker-compose.yaml logs
 
-service:
+service-up:
 	$(DC) -f service-docker-compose.yaml up -d
 	$(DC) -f service-docker-compose.yaml logs --tail 10

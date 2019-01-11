@@ -3,7 +3,7 @@
 PROJECT=""
 
 build() {
-    mkdir -p /mnt/$PROJECT/consul_data \
+    sudo mkdir -p /mnt/$PROJECT/consul_data \
         /mnt/$PROJECT/redis_data \
         /mnt/$PROJECT/mysql_data \
 
