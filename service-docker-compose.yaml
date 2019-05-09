@@ -8,6 +8,7 @@ services:
     container_name: app
     environment: 
       - MICRO_REGISTRY_ADDRESS=consul:8500
+      - MICRO_REGISTRY=consul
     stdin_open: true
     command: ./app
     volumes:
@@ -21,6 +22,7 @@ services:
     container_name: backend
     environment: 
       - MICRO_REGISTRY_ADDRESS=consul:8500
+      - MICRO_REGISTRY=consul
     stdin_open: true
     command: ./backend
     volumes:
